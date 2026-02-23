@@ -5,10 +5,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Mover _mover;
 
     
-    public void Init(IDirectionGenerator directionGenerator, Transform position)
+    public void Init(Vector3 direction, Transform position)
     {
         SetPosition(position);
-        Vector3 direction = directionGenerator.GetDirection();
         UpdateMove(direction);
         transform.LookAt(transform.position + direction);
     }

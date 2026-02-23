@@ -1,10 +1,5 @@
 using UnityEngine;
 
-public interface IDirectionGenerator
-{
-    Vector3 GetDirection();
-}
-
 public class SpawnPoint : MonoBehaviour, IDirectionGenerator
 {
     public Vector3 GetDirection()
