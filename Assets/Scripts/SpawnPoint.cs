@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class SpawnPoint : MonoBehaviour, IDirectionGenerator
+public class SpawnPoint : MonoBehaviour
 {
-    public Vector3 GetDirection()
-    {
-        return new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
-    }
+    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private Transform _target;
+
+    public Enemy GetEnemyPrefabPrefab => _enemyPrefab;
+    
+    public Transform GetTarget => _target;
+    
 }

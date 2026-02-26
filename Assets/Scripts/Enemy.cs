@@ -3,13 +3,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Mover _mover;
-
     
-    public void Init(Vector3 direction, Transform position)
+    public void Init( Transform position, Transform target)
     {
         SetPosition(position);
-        UpdateMove(direction);
-        transform.LookAt(transform.position + direction);
+        UpdateMove(target);
+        transform.LookAt(target);
     }
 
     private void SetPosition(Transform position)
@@ -20,9 +19,9 @@ public class Enemy : MonoBehaviour
         transform.parent = oldParent;
     }
 
-    private void UpdateMove(Vector3 direction)
+    private void UpdateMove(Transform target)
     {
-        _mover.SetDirection(direction);
+        _mover.SetTarget(target);
         _mover.EnableMove(true);
     }
 }

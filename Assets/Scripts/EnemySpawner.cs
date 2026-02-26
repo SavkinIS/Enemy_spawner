@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private float _spawnDelay = 2;
     [SerializeField] private List<SpawnPoint> _spawnPoints;
 
@@ -24,10 +23,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void InstantiateEnemy()
     {
-        Enemy enemy = Instantiate(_enemyPrefab, transform);
+        var spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count)];
+        
+        Enemy enemy = Instantiate(spawnPoint.GetEnemyPrefabPrefab, transform);
         enemy.gameObject.SetActive(true);
-        var position = _spawnPoints[Random.Range(0, _spawnPoints.Count)];
-        enemy.Init(position.GetDirection(), position.transform);
+     
+        enemy.Init( spawnPoint.transform, spawnPoint.GetTarget);
     }
 
     private IEnumerator SpawnEnemyCoroutine()

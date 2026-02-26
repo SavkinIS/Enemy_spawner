@@ -4,19 +4,14 @@ public class Mover : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
     
-    private Vector3 _moveDirection;
+    private Transform _target;
     private bool _canMove;
+    private Vector3 _direction;
 
-    private void Update()
+    protected virtual void Update()
     {
         if (_canMove)
             Move();
-    }
-
-    private void Move()
-    {
-        Vector3 moveDirection = _moveDirection * _moveSpeed * Time.deltaTime;
-        transform.Translate(moveDirection);
     }
 
     public void EnableMove(bool canMove)
@@ -24,8 +19,15 @@ public class Mover : MonoBehaviour
         _canMove = canMove;
     }
 
-    public void SetDirection(Vector3 direction)
+    public void SetTarget(Transform target)
     {
-        _moveDirection =  direction;
+        _target = target;
+    }
+    
+    private void Move()
+    {
+        _direction = (_target.position - transform.position).normalized;
+        Vector3 moveDirection = _direction * _moveSpeed * Time.deltaTime;
+        transform.Translate(moveDirection,  Space.World);
     }
 }
