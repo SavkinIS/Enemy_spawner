@@ -4,24 +4,20 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Mover _mover;
     
-    public void Init( Transform position, Transform target)
+    public void Init( Vector3 position, Transform target)
     {
         SetPosition(position);
         UpdateMove(target);
         transform.LookAt(target);
     }
 
-    private void SetPosition(Transform position)
+    private void SetPosition(Vector3 position)
     {
-        var oldParent = transform.parent;
-        transform.parent = position;
-        transform.localPosition = new Vector3(0,(transform.lossyScale.y), 0);
-        transform.parent = oldParent;
+       transform.position = new Vector3(position.x ,(transform.lossyScale.y), position.z);
     }
 
     private void UpdateMove(Transform target)
     {
         _mover.SetTarget(target);
-        _mover.EnableMove(true);
     }
 }

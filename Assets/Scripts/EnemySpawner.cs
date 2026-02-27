@@ -24,11 +24,11 @@ public class EnemySpawner : MonoBehaviour
     private void InstantiateEnemy()
     {
         var spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count)];
-        
+
         Enemy enemy = Instantiate(spawnPoint.GetEnemyPrefabPrefab, transform);
         enemy.gameObject.SetActive(true);
-     
-        enemy.Init( spawnPoint.transform, spawnPoint.GetTarget);
+
+        enemy.Init(spawnPoint.transform.position, spawnPoint.GetTarget);
     }
 
     private IEnumerator SpawnEnemyCoroutine()
@@ -37,15 +37,8 @@ public class EnemySpawner : MonoBehaviour
 
         while (_isTicking)
         {
-            _elapsedTime += Time.deltaTime;
-
-            if (_elapsedTime >= _spawnDelay)
-            {
-                _elapsedTime = 0;
-                InstantiateEnemy();
-            }
-
-            yield return null;
+            InstantiateEnemy();
+            yield return new WaitForSeconds(_spawnDelay);
         }
     }
 }

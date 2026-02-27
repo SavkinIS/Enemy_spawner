@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class SpawnPoint : MonoBehaviour
 {
@@ -9,5 +8,4 @@ public class SpawnPoint : MonoBehaviour
     public Enemy GetEnemyPrefabPrefab => _enemyPrefab;
     
     public Transform GetTarget => _target;
-    
 }
