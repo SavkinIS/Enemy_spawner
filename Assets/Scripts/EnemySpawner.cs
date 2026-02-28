@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
         Enemy enemy = Instantiate(spawnPoint.GetEnemyPrefabPrefab, transform);
         enemy.gameObject.SetActive(true);
 
-        enemy.Init(spawnPoint.transform.position, spawnPoint.GetTarget);
+        enemy.Init(spawnPoint.transform.position, spawnPoint.Target);
     }
 
     private IEnumerator SpawnEnemyCoroutine()

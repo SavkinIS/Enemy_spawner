@@ -7,5 +7,5 @@ public class SpawnPoint : MonoBehaviour
 
     public Enemy GetEnemyPrefabPrefab => _enemyPrefab;
     
-    public Transform GetTarget => _target;
+    public Transform Target => _target;
 }
